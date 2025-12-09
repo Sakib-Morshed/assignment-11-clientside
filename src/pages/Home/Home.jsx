@@ -1,10 +1,11 @@
 import HeroCarousel from "../../components/HeroCarousel/HeroCarousel";
-import Plants from "../../components/Home/Plants";
+import HomeMeals from "../../components/Home/HomeMeals";
 
 const Home = () => {
   return (
     <div>
       <HeroCarousel />
+      <HomeMeals />
 
       {/* More components */}
     </div>

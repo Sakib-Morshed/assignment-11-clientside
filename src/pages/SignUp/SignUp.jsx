@@ -5,8 +5,6 @@ import { toast } from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { useForm } from "react-hook-form";
 
-
-
 const SignUp = () => {
   const { createUser, updateUserProfile, loading } = useAuth();
   const navigate = useNavigate();
@@ -75,7 +73,7 @@ const SignUp = () => {
                 id="image"
                 placeholder="Photo url..."
               />
-              {errors.name?.type === "required" && (
+              {errors.photoURL?.type === "required" && (
                 <p className="text-red-500">PhotoURL is required</p>
               )}
             </div>

@@ -5,7 +5,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import PlantDetails from "../pages/PlantDetails/PlantDetails";
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
-import AddPlant from "../pages/Dashboard/Seller/AddPlant";
+
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import Profile from "../pages/Dashboard/Common/Profile";
 import Statistics from "../pages/Dashboard/Common/Statistics";
@@ -16,6 +16,7 @@ import MyOrders from "../pages/Dashboard/Customer/MyOrders";
 import { createBrowserRouter } from "react-router";
 import Meals from "../pages/Meals/Meals";
 import Login from "../pages/Login/Login";
+import AddMeal from "../pages/Dashboard/Seller/AddMeal";
 
 export const router = createBrowserRouter([
   {
@@ -56,10 +57,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "add-plant",
+        path: "add-meal",
         element: (
           <PrivateRoute>
-            <AddPlant />
+            <AddMeal />
           </PrivateRoute>
         ),
       },

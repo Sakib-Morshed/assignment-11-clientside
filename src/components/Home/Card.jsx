@@ -1,49 +1,88 @@
-import { Link } from 'react-router'
+import { Link } from "react-router";
 
-const Card = () => {
+const Card = ({ meal }) => {
+  console.log(meal);
   return (
-    <Link
-      to={`/plant/1`}
-      className='col-span-1 cursor-pointer group shadow-xl p-3 rounded-xl'
-    >
-      <div className='flex flex-col gap-2 w-full'>
-        <div
-          className='
-              aspect-square 
-              w-full 
-              relative 
-              overflow-hidden 
-              rounded-xl
-            '
-        >
-          <img
-            className='
-                object-cover 
-                h-full 
-                w-full 
-                group-hover:scale-110 
-                transition
-              '
-            src='https://i.ibb.co.com/rMHmQP2/money-plant-in-feng-shui-brings-luck.jpg'
-            alt='Plant Image'
-          />
+    <div className="w-full sm:w-64 max-w-sm mx-auto p-2 bg-white rounded-xl shadow-lg hover:shadow-amber-500/50 transition-all duration-300 transform hover:-translate-y-1">
+      <Link
+        href="#"
+        className="col-span-1 cursor-pointer group rounded-xl block"
+      >
+        <div className="flex flex-col gap-3 w-full p-2">
           <div
-            className='
-              absolute
-              top-3
-              right-3
-            '
-          ></div>
-        </div>
-        <div className='font-semibold text-lg'>Money Plant</div>
-        <div className='font-semibold text-lg'>Category: Indoor</div>
-        <div className='font-semibold text-lg'>Quantity: 10</div>
-        <div className='flex flex-row items-center gap-1'>
-          <div className='font-semibold'> Price: 15$</div>
-        </div>
-      </div>
-    </Link>
-  )
-}
+            className="
+          aspect-square
+          w-full
+          relative
+          overflow-hidden
+          rounded-lg
+          shadow-md
+        "
+          >
+            <img
+              className="
+            object-cover
+            h-full
+            w-full
+            group-hover:scale-105
+            transition-transform duration-500
+          "
+              src={meal.foodImage}
+              alt="Food Image"
+            />
+            <div
+              className="
+            absolute
+            top-2
+            right-2
+            bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full
+          "
+            >
+              HOT
+            </div>
+          </div>
 
-export default Card
+          <div className="flex flex-col gap-1">
+            <div className="font-extrabold text-xl text-gray-800 truncate">
+              {meal.foodName}
+            </div>
+
+            <div className="text-sm text-gray-500 truncate">
+              By: {meal.chefName}
+            </div>
+            <div className="text-sm text-gray-500 truncate">
+              id :{meal.chefId}
+            </div>
+
+            <div className="flex items-center justify-between mt-1">
+              <div className="flex items-center text-sm text-yellow-500">
+                <span className="mr-1">⭐</span>
+                <span className="font-semibold text-gray-700">
+                  {meal.rating}
+                </span>
+              </div>
+
+              <div className="font-bold text-xl text-red-600">
+                {meal.price}$
+              </div>
+            </div>
+          </div>
+
+          <button
+            className="
+          w-full 
+          bg-red-600 text-white font-semibold py-2 rounded-lg 
+          hover:bg-red-700 active:bg-red-800 
+          transition-colors duration-200
+          mt-2
+        "
+          >
+            See Details
+          </button>
+        </div>
+      </Link>
+    </div>
+  );
+};
+
+export default Card;
