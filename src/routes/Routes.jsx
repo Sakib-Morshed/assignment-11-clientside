@@ -2,7 +2,7 @@ import Home from "../pages/Home/Home";
 import ErrorPage from "../pages/ErrorPage";
 
 import SignUp from "../pages/SignUp/SignUp";
-import PlantDetails from "../pages/PlantDetails/PlantDetails";
+
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
 
@@ -17,6 +17,9 @@ import { createBrowserRouter } from "react-router";
 import Meals from "../pages/Meals/Meals";
 import Login from "../pages/Login/Login";
 import AddMeal from "../pages/Dashboard/Seller/AddMeal";
+import MealDetails from "../pages/MealDetails/MealDetails";
+import MyReviews from "../pages/Dashboard/Customer/MyReviews";
+import Favorites from "../pages/Dashboard/Customer/Favorites";
 
 export const router = createBrowserRouter([
   {
@@ -29,8 +32,12 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/plant/:id",
-        element: <PlantDetails />,
+        path: "/meal/:id",
+        element: (
+          <PrivateRoute>
+            <MealDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/meals",
@@ -93,6 +100,22 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-reviews",
+        element: (
+          <PrivateRoute>
+            <MyReviews />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "favorites",
+        element: (
+          <PrivateRoute>
+            <Favorites />
           </PrivateRoute>
         ),
       },

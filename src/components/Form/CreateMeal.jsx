@@ -14,7 +14,7 @@ const CreateMeal = () => {
         chefName: data.chefName,
         foodImage: data.foodImageURL,
         price: parseFloat(data.price),
-        rating: 0,
+        rating: data.rating,
         ingredients: data.ingredients.split(","),
         estimatedDeliveryTime: data.estimatedDeliveryTime,
         chefExperience: data.chefExperience,
@@ -73,6 +73,15 @@ const CreateMeal = () => {
           step="0.01"
           className="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 text-gray-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           placeholder="Price in dollar"
+        />
+        {/* ratings */}
+
+        <input
+          {...register("rating", { required: true, valueAsNumber: true })}
+          type="number"
+          step="0.01"
+          className="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 text-gray-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Ratings in number"
         />
 
         {/* Estimated Delivery Time */}

@@ -4,10 +4,7 @@ const Card = ({ meal }) => {
   console.log(meal);
   return (
     <div className="w-full sm:w-64 max-w-sm mx-auto p-2 bg-white rounded-xl shadow-lg hover:shadow-amber-500/50 transition-all duration-300 transform hover:-translate-y-1">
-      <Link
-        href="#"
-        className="col-span-1 cursor-pointer group rounded-xl block"
-      >
+      <div className="col-span-1 cursor-pointer group rounded-xl block">
         <div className="flex flex-col gap-3 w-full p-2">
           <div
             className="
@@ -68,19 +65,20 @@ const Card = ({ meal }) => {
             </div>
           </div>
 
-          <button
+          <Link
+            to={`/meal/${meal._id}`}
             className="
           w-full 
           bg-red-600 text-white font-semibold py-2 rounded-lg 
           hover:bg-red-700 active:bg-red-800 
           transition-colors duration-200
-          mt-2
+          mt-2 btn
         "
           >
             See Details
-          </button>
+          </Link>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };
