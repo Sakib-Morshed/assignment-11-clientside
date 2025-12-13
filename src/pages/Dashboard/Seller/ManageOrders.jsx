@@ -1,27 +1,44 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ManageOrders = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
-  const { data: orders = [], refetch } = useQuery({
-    queryKey: ["orderRequests", user?.chefId],
+  const { data: dbUser = {} } = useQuery({
+    queryKey: ["dbUser", user?.email],
+    enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/orders/chef/${user.chefId}`);
+      const res = await axiosSecure.get(`/users/${user.email}`);
       return res.data;
     },
-    enabled: !!user?.chefId,
+  });
+  const chefId = dbUser?.chefId;
+  console.log("DB user:", dbUser);
+  console.log("Chef ID:", dbUser?.chefId);
+
+  const { data: orders = [], refetch } = useQuery({
+    queryKey: ["orderRequests", chefId],
+    enabled: !!chefId,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/orders/chef/${chefId}`);
+      console.log(res.data);
+
+      return res.data;
+    },
   });
 
-  const updateStatus = async (id, status) => {
-    const res = await axiosSecure.patch(`/orders/status/${id}`, { status });
+  const updateStatus = async (id, orderStatus) => {
+    const res = await axiosSecure.patch(`/orders/status/${id}`, {
+      orderStatus,
+    });
 
     if (res.data.modifiedCount > 0) {
       Swal.fire({
         icon: "success",
-        title: `Order ${status}!`,
+        title: `Order ${orderStatus}!`,
         timer: 1500,
         showConfirmButton: false,
       });

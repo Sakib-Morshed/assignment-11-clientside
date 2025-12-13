@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 import { AuthContext } from "./AuthContext";
+import axios from "axios";
 
 const auth = getAuth(app);
 
@@ -44,6 +45,15 @@ const AuthProvider = ({ children }) => {
       console.log("CurrentUser-->", currentUser?.email);
       setUser(currentUser);
       setLoading(false);
+
+      if (currentUser?.email) {
+        const userInfo = {
+          name: currentUser.displayName,
+          email: currentUser.email,
+          photo: currentUser.photoURL,
+        };
+        await axios.post(`${import.meta.env.VITE_API_URL}/users`, userInfo);
+      }
     });
     return () => {
       return unsubscribe();
