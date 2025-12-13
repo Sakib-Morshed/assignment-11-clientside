@@ -34,12 +34,11 @@ const Meals = () => {
           <h2 className="text-3xl text-center font-semibold text-red-600">
             The Meals Board
           </h2>
-          <p className="text-md text-gray-500 truncate my-4 text-center">
+          <p className="text-xl text-gray-500 truncate my-4 text-center">
             Quick access to your next favorite dish. View all chef-recommended
             specials and order today.
           </p>
 
-            
           <span className="font-semibold text-2xl text-red-600">
             Sorting :{" "}
           </span>

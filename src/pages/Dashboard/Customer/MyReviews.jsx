@@ -43,71 +43,114 @@ const MyReviews = () => {
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">My Reviews</h2>
+    <div className="p-6 max-w-4xl mx-auto">
+      <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+        My Reviews
+      </h2>
 
-      {reviews.length === 0 && <p>You have no reviews yet!</p>}
+      {reviews.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-gray-500 text-lg">You have no reviews yet!</p>
+        </div>
+      )}
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         {reviews.map((r) => (
-          <div key={r._id} className="border p-4 rounded shadow">
-            {editing === r._id ? (
-              <div>
-                <label className="block">Rating</label>
-                <input
-                  type="number"
-                  className="border p-2 w-full mb-2"
-                  value={editRating}
-                  onChange={(e) => setEditRating(e.target.value)}
-                />
-
-                <label className="block">Comment</label>
-                <textarea
-                  className="border p-2 w-full mb-2"
-                  value={editComment}
-                  onChange={(e) => setEditComment(e.target.value)}
-                />
-
-                <button
-                  onClick={handleUpdate}
-                  className="bg-green-600 text-white px-4 py-2 rounded mr-2"
-                >
-                  Save
-                </button>
-                <button
-                  onClick={() => setEditing(null)}
-                  className="bg-gray-400 text-white px-4 py-2 rounded"
-                >
-                  Cancel
-                </button>
-              </div>
-            ) : (
-              <>
-                <div className="flex justify-between">
+          <div
+            key={r._id}
+            className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+          >
+            <div className="p-6">
+              {editing === r._id ? (
+                <div className="space-y-4">
                   <div>
-                    <p className="font-bold">{r.reviewerName}</p>
-                    <p className="text-yellow-500 font-bold">⭐ {r.rating}</p>
-                    <p>{r.comment}</p>
+                    <label className="label">
+                      <span className="label-text font-medium">
+                        Rating (1-5)
+                      </span>
+                    </label>
+                    <input
+                      type="number"
+                      min="1"
+                      max="5"
+                      className="input input-bordered w-full"
+                      value={editRating}
+                      onChange={(e) => setEditRating(e.target.value)}
+                    />
                   </div>
 
-                  <div className="flex gap-2">
+                  <div>
+                    <label className="label">
+                      <span className="label-text font-medium">Comment</span>
+                    </label>
+                    <textarea
+                      className="textarea textarea-bordered w-full h-32"
+                      value={editComment}
+                      onChange={(e) => setEditComment(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="flex gap-3">
+                    <button
+                      onClick={handleUpdate}
+                      className="btn btn-success flex-1"
+                    >
+                      Save Changes
+                    </button>
+                    <button
+                      onClick={() => setEditing(null)}
+                      className="btn btn-ghost flex-1"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex flex-col md:flex-row justify-between gap-6">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="avatar">
+                        <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                          <img
+                            src={`https://ui-avatars.com/api/?name=${r.reviewerName}&background=encodeURIComponent}&background=6366f1&color=fff`}
+                            alt={r.reviewerName}
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-lg">
+                          {r.reviewerName}
+                        </h4>
+                        <div className="flex items-center gap-1">
+                          <span className="text-yellow-500 text-xl">⭐</span>
+                          <span className="font-bold text-lg">
+                            {r.rating}.0
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-gray-700 mt-3 leading-relaxed">
+                      {r.comment}
+                    </p>
+                  </div>
+
+                  <div className="flex md:flex-col gap-3">
                     <button
                       onClick={() => openEdit(r)}
-                      className="bg-green-600 text-white mt-4 px-5 py-2 rounded-lg hover:bg-green-700"
+                      className="btn btn-outline btn-primary"
                     >
                       Edit
                     </button>
-
                     <button
                       onClick={() => handleDelete(r._id)}
-                      className=" bg-red-600 text-white rounded-lg hover:bg-red-800 mt-4 px-5 py-2"
+                      className="btn btn-outline btn-error"
                     >
                       Delete
                     </button>
                   </div>
                 </div>
-              </>
-            )}
+              )}
+            </div>
           </div>
         ))}
       </div>

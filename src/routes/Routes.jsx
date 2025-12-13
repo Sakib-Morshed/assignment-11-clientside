@@ -20,6 +20,10 @@ import AddMeal from "../pages/Dashboard/Seller/AddMeal";
 import MealDetails from "../pages/MealDetails/MealDetails";
 import MyReviews from "../pages/Dashboard/Customer/MyReviews";
 import Favorites from "../pages/Dashboard/Customer/Favorites";
+import Order from "../pages/Order/Order";
+
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import PaymentPage from "../pages/PaymentPage/PaymentPage";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +46,24 @@ export const router = createBrowserRouter([
       {
         path: "/meals",
         Component: Meals,
+      },
+      {
+        path: "/order/:id",
+        element: (
+          <PrivateRoute>
+            <Order />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/payment/:id",
+        element: (
+          <PrivateRoute>
+            <PaymentPage />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          useAxiosSecure.length(`/orders/${params.id}`).then((res) => res.data),
       },
     ],
   },
