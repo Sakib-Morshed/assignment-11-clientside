@@ -29,6 +29,7 @@ import PaymentSuccess from "../pages/PaymentPage/PaymentSuccess";
 import MyMeals from "../pages/Dashboard/Seller/MyMeals";
 import UpdateMeal from "../pages/Dashboard/Seller/UpdateMeal";
 import Statistics from "../pages/Dashboard/Admin/Statistics";
+import Welcome from "../pages/Dashboard/Common/Welcome";
 
 export const router = createBrowserRouter([
   {
@@ -94,6 +95,14 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        index: true,
+        element: (
+          <PrivateRoute>
+            <Welcome />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "adminStats",
         element: (
