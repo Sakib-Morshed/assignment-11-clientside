@@ -117,9 +117,15 @@ export default function Navbar() {
             <Link to="/dashboard" className="block text-white text-xl">
               Dashboard
             </Link>
-            <Link to="/signup" className="block text-white text-xl">
-              Signup
-            </Link>
+            {user ? (
+              <Link onClick={logOut} className="block text-white text-xl">
+                Logout
+              </Link>
+            ) : (
+              <Link to="/signup" className="block text-white text-xl">
+                Signup
+              </Link>
+            )}
 
             <Link to="/meals">
               <button className="w-full py-3 border border-white text-white rounded-full">
