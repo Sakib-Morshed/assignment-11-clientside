@@ -117,8 +117,8 @@ export default function Navbar() {
             <Link to="/dashboard" className="block text-white text-xl">
               Dashboard
             </Link>
-            <Link to="/login" className="block text-white text-xl">
-              Login
+            <Link to="/signup" className="block text-white text-xl">
+              Signup
             </Link>
 
             <Link to="/meals">
